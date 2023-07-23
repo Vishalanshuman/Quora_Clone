@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="text-center">
+        <a class="btn btn-primary m-4" href="{% url 'create_question' %}">Post new Question</a>
+    </div>
+    {% for question in questions %}
+    <div class="row mt-4">
+        <div class="col-3"></div>
+        <div class="col-5">
+
+            <div class="card shadow">
+                <p class="bold m-2 ms">{{question.user.first_name}} {{question.user.last_name}}</p><hr>
+                <p class="ms-4 text-center">{{question.title}}</p>
+                <hr>
+                <p>{{question.content}}</p>
+                <hr>
+                <a class="btn btn-primary m-2" href='{% url 'answer_question' question.id %}'>Answer</a>
+                {% block answers %}
+                
+                {% endblock answers %}
+            </div>
+            
+        </div>
+  
+        <div class="col-4"></div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
